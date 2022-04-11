@@ -1,4 +1,93 @@
-baseURL = 'http://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
-theme = "ananke"
+baseURL = "https://www.fskelly.com/"
+languageCode = "en-us"
+title = "Fletcher's Cloud Journey"
+theme = "anatole"
+
+# Enable Disqus
+disqusShortname = "fletchercloudblog"
+
+# Syntax highlighting
+pygmentsUseClasses = true
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+
+[params]
+#title = "I'm Fletcher Kelly"
+title = "Fletcher, the tinkerer"
+author = "Fletcher Kelly"
+#copyright = "2020-2021"
+description = "Just a simple cloud and technology tinkerer, focusing on cloud and home automation"
+# profilePicture = "images/profilePic1.jpg"
+profilePicture = "images/hardware-gc72125ccb_640.jpg"
+keywords = ""
+favicon = "favicons/"
+# example ["css/custom.css"]
+customCss = []
+# example ["js/custom.js"]
+customJs = [] 
+mainSections = ["post"]
+tags = ["tags"]
+
+## Math settings
+[params.math]
+enable = false  # options: true, false. Enable math support globally, default: false. You can always enable math on per page.
+use = "katex"  # options: "katex", "mathjax". default is "katex".
+
+## Social links
+# use 'fab' when brand icons, use 'fas' when standard solid icons.
+[[params.socialIcons]]
+icon = "fab fa-linkedin"
+title = "Linkedin"
+url = "https://www.linkedin.com/in/fletcherkelly/"
+
+[[params.socialIcons]]
+icon = "fab fa-github"
+title = "GitHub"
+url = "https://github.com/fskelly/"
+
+[[params.socialIcons]]
+icon = "fas fa-envelope"
+title = "e-mail"
+url = "mailto:fletcher_kelly@outlook.com"
+
+## Menu items
+
+[menu]
+
+  [[menu.main]]
+  name = "Home"
+  identifier = "home"
+  weight = -100
+  url = "/"
+
+  [[menu.main]]
+  name = "Posts"
+  weight = -90
+  identifier = "posts"
+  url = "/post/"
+
+#  [[menu.main]]
+#  name = "About"
+#  weight = 600
+#  identifier = "about"
+#  url = "/about/"
+
+  [[menu.main]]
+  name = "Cloud"
+  weight = 380
+  identifier = "cloud"
+  url = "/categories/azure/"
+
+  [[menu.main]]
+  name = "Home Automation"
+  weight = 400
+  identifier = "homeautomation"
+  url = "/categories/home-automation/"
+
+
+  [[menu.main]]
+  name = "Tags"
+  weight = 500
+  identifier = "tag"
+  url = "/tags/"
+
