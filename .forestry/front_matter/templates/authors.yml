@@ -1,4 +1,19 @@
 ---
 label: Authors
 hide_body: false
-fields: []
+fields:
+- name: author_name
+  type: text
+  config:
+    required: false
+  label: Author Name
+- name: profile_picture
+  type: file
+  config:
+    maxSize: 5
+  label: Profile Picture
+- name: include_template
+  type: include
+  config: {}
+  template: authors
+  label: include template
