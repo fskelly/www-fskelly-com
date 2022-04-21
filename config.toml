@@ -13,12 +13,12 @@ pygmentsCodefencesGuessSyntax = true
 
 [params]
 #title = "I'm Fletcher Kelly"
-title = "Fletcher, the tinkerer"
+title = "Fletcher Kelly "
 author = "Fletcher Kelly"
 #copyright = "2020-2021"
 description = "Just a simple cloud and technology tinkerer, focusing on cloud and home automation"
 # profilePicture = "images/profilePic1.jpg"
-profilePicture = "images/hardware-gc72125ccb_640.jpg"
+profilePicture = "images/blogLogo.jpeg"
 keywords = ""
 favicon = "favicons/"
 # example ["css/custom.css"]
@@ -91,3 +91,11 @@ url = "mailto:fletcher_kelly@outlook.com"
   identifier = "tag"
   url = "/tags/"
 
+[taxonomies]
+	author = "authors"
+	tag = "tags"
+	category = "categories"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML", "RSS"]

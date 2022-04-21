@@ -7,7 +7,7 @@ Tags: [
     Networking    
 ]
 Categories: [
-    Azure VMware Solution
+    Azure VMware Solution, Azure
 ]
 DisableComments: false
 Author: "Fletcher Kelly"

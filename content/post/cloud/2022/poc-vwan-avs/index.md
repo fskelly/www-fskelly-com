@@ -1,6 +1,7 @@
 ---
 title: "Using Azure Virtual WAN to connect to Azure VMware Solution"
 date: 2022-03-28T07:27:16+01:00
+author: "Fletcher Kelly"
 Description: ""
 Tags: [
     AVS,Networking
@@ -10,8 +11,9 @@ Categories: [
 ]
 DisableComments: false
 draft: false
----
+authors: ["Fletcher Kelly"]
 
+---
 ## How do I connect my on-premises environment to AVS in a quick and simple way?
 
 There are a few patterns available for connecting [Azure VMware Solution][Azure VMware Solution] to your on-premises network. There is specific guidance for PRODUCTION deployments here [here](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/azure-vmware/eslz-network-topology-connectivity). The option we are talking about here is for a different use case.

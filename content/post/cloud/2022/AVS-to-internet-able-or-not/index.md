@@ -6,7 +6,7 @@ Tags: [
     AVS,Networking
 ]
 Categories: [
-    Azure VMware Solution
+    Azure VMware Solution, Azure
 ]
 DisableComments: false
 ---

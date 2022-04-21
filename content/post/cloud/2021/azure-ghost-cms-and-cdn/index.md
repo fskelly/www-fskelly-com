@@ -3,7 +3,9 @@ title: "Azure Ghost Cms and Cdn"
 date: 2021-01-11T07:00:18+02:00
 Description: ""
 Tags: ["azure","cdn","blog","hugo"]
-Categories: []
+Categories: [
+    Azure
+]
 DisableComments: false
 ---
 

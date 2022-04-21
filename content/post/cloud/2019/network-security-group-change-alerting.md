@@ -3,7 +3,7 @@ title: "Network Security Group Change Alerting"
 date: 2019-02-20T08:21:49+02:00
 Description: ""
 Tags: ["nsg","azure monitor"]
-Categories: []
+Categories: ["Azure"]
 DisableComments: false
 author: "Fletcher Kelly"
 ---

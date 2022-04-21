@@ -3,7 +3,7 @@ title: "Csa Tools of the Trade"
 date: 2019-07-09T16:46:43+02:00
 Description: ""
 Tags: ["CSA", "cloud tools"]
-Categories: []
+Categories: ["Azure"]
 DisableComments: false
 author: "Fletcher Kelly"
 ---

@@ -3,7 +3,7 @@ title: "Importance of Networking Azure"
 date: 2019-08-07T16:33:36+02:00
 Description: ""
 Tags: ["CSA", "Architecture", "Networking"]
-Categories: []
+Categories: ["Azure"]
 DisableComments: false
 author: "Fletcher Kelly"
 ---
