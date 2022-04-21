@@ -1,6 +1,0 @@
-+++
-name = ""
-bio = ""
-areas = ""
-company = ""
-+++

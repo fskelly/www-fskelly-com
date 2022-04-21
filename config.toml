@@ -1,101 +1,124 @@
+######################## default configuration ####################
 baseURL = "https://www.fskelly.com/"
-languageCode = "en-us"
-title = "Fletcher's Cloud Journey"
-theme = "anatole"
+title = "Fletcher Kelly - Cloud, Home automation and technology"
+theme = "qurno"
+# post pagination
+paginate = "10"
+# post excerpt
+summaryLength = "20"
+# google analytics
+googleAnalytics = "" # check the hugo documentation for more info on this - https://gohugo.io/templates/internal/#google-analytics
+# disqus short name
+DisqusShortname = "platol" # get your shortname form here : https://disqus.com
 
-# Enable Disqus
-disqusShortname = "fletchercloudblog"
+############################# Image Processing ##############################
+[imaging]
+quality = "100"
 
-# Syntax highlighting
-pygmentsUseClasses = true
-pygmentsCodeFences = true
-pygmentsCodefencesGuessSyntax = true
+############################# Markup ##############################
+[markup.highlight]
+  style = 'colorful'
 
-[params]
-#title = "I'm Fletcher Kelly"
-title = "Fletcher Kelly "
-author = "Fletcher Kelly"
-#copyright = "2020-2021"
-description = "Just a simple cloud and technology tinkerer, focusing on cloud and home automation"
-# profilePicture = "images/profilePic1.jpg"
-profilePicture = "images/blogLogo.jpeg"
-keywords = ""
-favicon = "favicons/"
-# example ["css/custom.css"]
-customCss = []
-# example ["js/custom.js"]
-customJs = [] 
-mainSections = ["post"]
-tags = ["tags"]
-
-## Math settings
-[params.math]
-enable = false  # options: true, false. Enable math support globally, default: false. You can always enable math on per page.
-use = "katex"  # options: "katex", "mathjax". default is "katex".
-
-## Social links
-# use 'fab' when brand icons, use 'fas' when standard solid icons.
-[[params.socialIcons]]
-icon = "fab fa-linkedin"
-title = "Linkedin"
-url = "https://www.linkedin.com/in/fletcherkelly/"
-
-[[params.socialIcons]]
-icon = "fab fa-github"
-title = "GitHub"
-url = "https://github.com/fskelly/"
-
-[[params.socialIcons]]
-icon = "fas fa-envelope"
-title = "e-mail"
-url = "mailto:fletcher_kelly@outlook.com"
-
-## Menu items
-
-[menu]
-
-  [[menu.main]]
-  name = "Home"
-  identifier = "home"
-  weight = -100
-  url = "/"
-
-  [[menu.main]]
-  name = "Posts"
-  weight = -90
-  identifier = "posts"
-  url = "/post/"
-
-#  [[menu.main]]
-#  name = "About"
-#  weight = 600
-#  identifier = "about"
-#  url = "/about/"
-
-  [[menu.main]]
-  name = "Cloud"
-  weight = 380
-  identifier = "cloud"
-  url = "/categories/azure/"
-
-  [[menu.main]]
-  name = "Home Automation"
-  weight = 400
-  identifier = "homeautomation"
-  url = "/categories/home-automation/"
-
-
-  [[menu.main]]
-  name = "Tags"
-  weight = 500
-  identifier = "tag"
-  url = "/tags/"
-
-[taxonomies]
-	author = "authors"
-	tag = "tags"
-	category = "categories"
-
+############################# Outputs ##############################
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
-  page = ["HTML", "RSS"]
+home = ["HTML", "RSS", "JSON"]
+
+[markup.goldmark.renderer]
+unsafe= true
+
+############################## Plugins ##############################
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+link = "plugins/tabler-icons/tabler-icons.min.css"
+[[params.plugins.css]]
+link = "https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;600&family=Crete+Round&display=swap"
+
+# JS Plugins
+[[params.plugins.js]]
+link = "plugins/bootstrap/bootstrap.min.js"
+[[params.plugins.js]]
+link = "plugins/lightense/lightense.min.js"
+
+#################### Default Parameters ################################
+[params]
+logo = "images/blogLogo.jpeg"
+logo_width = "440px"
+favicon = "images/favicon.png"
+# Meta data
+description = "Minimal Blog Theme for HUGO Static Site Generator"
+author = "Platol"
+# search
+search = true
+# main section
+mainSections = ["blog"]
+# contact form action
+contact_form_action = "#" # contact form works with https://formspree.io
+# copyright
+copyright = "Fletcher Kelly ." # ©2022(year will generate autometically) Qurno. All rights reserved.
+
+# Subscription
+[params.subscription]
+enable = false
+# mailchimp subsciption
+mailchimp_form_action = "https://gmail.us20.list-manage.com/subscribe/post?u=92641572a6c6ec43da15feed0&amp;id=d28bb2454f" # replace this url with yours
+mailchimp_form_name = "b_92641572a6c6ec43da15feed0_d28bb2454f" # replace this code with yours
+title = "Get latest posts delivered right to your inbox"
+input_placeholder = "Your email address"
+button_label = "Join today"
+
+# Contact Form
+[params.contact_form]
+enable = false
+contact_form_action = "https://airform.io/platoltheme@gmail.com"
+# replace the `contact_form_action` url with yours
+# you can use formspree, sheetmonkey etc etc
+
+
+# Main Menu
+[[menu.main]]
+name = "Home"
+url = ""
+weight = 1
+  
+[[menu.main]]
+name = "About"
+url = "about/"
+weight = 2
+  
+# [[menu.main]]
+# name = "Elements"
+# url = "elements/"
+# weight = 5
+  
+[[menu.main]]
+name = "Archive"
+url = "blog/archive/"
+weight = 8
+  
+# [[menu.main]]
+# name = "Contact"
+# url = "contact/"
+# weight = 9
+
+[[menu.main]]
+name = "AVS"
+url = "categories/azure-vmware-solution/"
+weight = 6
+
+[[menu.main]]
+name = "Tags"
+url = "tags/"
+weight = 6
+
+# Footer Menu
+[[menu.footer]]
+name = "Privacy Policy"
+url = "privacy/"
+weight = 3
+
+[[menu.footer]]
+name = "404 Page"
+url = "404-page/"
+weight = 4

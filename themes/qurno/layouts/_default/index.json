@@ -1,0 +1,7 @@
+{{- $.Scratch.Add "index" slice -}}
+{{- range where site.RegularPages "Type" "in" site.Params.mainSections -}}
+
+{{- $date:= .PublishDate.Format "02 Jan, 2006" -}}
+{{- $.Scratch.Add "index" (dict "title" .Title "date" $date "tags" .Params.tags "categories" .Params.categories "content" .Plain "permalink" .RelPermalink) -}}
+{{- end -}}
+{{- $.Scratch.Get "index" | uniq | jsonify -}}

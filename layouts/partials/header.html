@@ -1,0 +1,130 @@
+<div class="header-height-fix"></div>
+<header class="header-nav">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+          <!-- navbar logo -->
+          {{if site.Params.logo}}
+          <a class="navbar-brand font-weight-bold mb-0" href="{{ site.BaseURL | relURL }}" title="{{site.Params.logo_text}}">
+            {{ if site.Params.logo }}
+            {{ if fileExists (add `assets/` site.Params.logo) }}
+            {{ $img:= resources.Get (site.Params.logo) }}
+            {{ if and (ne (path.Ext $img) `.svg`) (ne (path.Ext $img) `.gif`) }}
+            {{ $img:= $img.Resize "110x" }}
+            {{ $imgWebp:= $img.Resize "110x webp" }}
+            <img loading="lazy" decoding="async" class="img-fluid" width="{{$img.Width}}" height="{{$img.Height}}" src="{{$imgWebp.RelPermalink}}" onerror="this.onerror=null;this.src='{{$img.RelPermalink}}'" alt="{{ site.Params.logo_text }}">
+            {{ else }}
+            <img loading="lazy" decoding="async" class="img-fluid" width="{{$img.Width}}" height="{{$img.Height}}" src="{{$img.RelPermalink}}" alt="{{ site.Params.logo_text }}">
+            {{ end }}
+            {{ else }}
+            {{ site.Params.logo_text | markdownify }}
+            {{ end }}
+            {{ end }}
+          </a>
+          {{end}}
+
+          {{if site.Params.search}}
+          <button class="search-toggle d-inline-block d-lg-none ms-auto me-1 me-sm-3" data-toggle="search" aria-label="Search Toggle">
+            <span>Search</span>
+            <svg width="22" height="22" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 15.5L19 19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 11C5 14.3137 7.68629 17 11 17C12.6597 17 14.1621 16.3261 15.2483 15.237C16.3308 14.1517 17 12.654 17 11C17 7.68629 14.3137 5 11 5C7.68629 5 5 7.68629 5 11Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          {{end}}
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navHeader" aria-controls="navHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="ti ti-menu-2 menu-open"></i>
+            <i class="ti ti-x menu-close"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navHeader">
+            <ul class="navbar-nav {{ if site.Params.search }}mx-auto{{else}}ms-auto{{end}}">
+              <!-- menu active -->
+              {{ $currentPage := . }}
+              {{ range site.Menus.main }}
+              {{ $menuURL := .URL | absLangURL }}
+              {{ $pageURL:= $currentPage.Permalink | absLangURL }}
+              {{ $active := eq $menuURL $pageURL }}
+              {{ if .HasChildren }}
+              <li class="nav-item dropdown 
+                {{ range .Children }}
+                {{ $childURL := .URL | absLangURL }}
+                {{ $active := eq $childURL $pageURL }}
+                {{ if $active }}active{{ end }}
+                {{ end }}">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }}</a>
+                <ul class="dropdown-menu">
+                  {{ range .Children }}
+                  {{ $childURL := .URL | absLangURL }}
+                  {{ $active := eq $childURL $pageURL }}
+                  <li>
+                    <a class="dropdown-item {{ if $active }}active{{ end }}" {{if findRE `^http` .URL}}target="_blank" rel="noopener" {{end}} href="{{if findRE `^#` .URL}}{{if not $.IsHome}}{{site.BaseURL | relLangURL}}{{end}}{{.URL}}{{else}}{{.URL | relLangURL}}{{end}}">{{ .Name }}</a>
+                  </li>
+                  {{ end }}
+                </ul>
+              </li>
+              {{ else }}
+              <li class="nav-item {{ if $active }}active{{ end }}">
+                <a class="nav-link" {{if findRE `^http` .URL}}target="_blank" rel="noopener"{{end}} href="{{if findRE `^#` .URL}}{{if not $.IsHome}}{{site.BaseURL | relLangURL}}{{end}}{{.URL}}{{else}}{{.URL | relLangURL}}{{end}}">{{.Name}}</a>
+              </li>
+              {{ end }}
+              {{ end }}
+            </ul>
+            
+            {{if site.Params.search}}
+            <div class="navbar-right d-none d-lg-inline-block">
+              <ul class="social-links list-unstyled list-inline">
+                <li class="list-inline-item ms-4 d-none d-lg-inline-block">
+                  <button class="search-toggle" data-toggle="search" aria-label="Search Toggle">
+                    <span>Search</span>
+                    <svg width="22" height="22" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 15.5L19 19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 11C5 14.3137 7.68629 17 11 17C12.6597 17 14.1621 16.3261 15.2483 15.237C16.3308 14.1517 17 12.654 17 11C17 7.68629 14.3137 5 11 5C7.68629 5 5 7.68629 5 11Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            {{end}}
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+{{if site.Params.search}}
+<div class="search-block">
+  <!-- search close button -->
+  <div data-toggle="search-close">
+    <span class="ti ti-x text-primary"></span>
+  </div>
+  <!-- search input field -->
+  <input type="text" id="js-search-input" placeholder="Type to search blog.." aria-label="search-query">
+  <p id="js-search-loader" class="mb-0 mt-4" style="display:none">
+    <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" class="align-top me-1 test-dark" width="25px" height="25px" viewBox="0 0 128 128" xml:space="preserve"><rect x="0" y="0" width="100%" height="100%" fill="#FFFFFF" /><g><circle cx="16" cy="64" r="16" fill="currentColor"/><circle cx="16" cy="64" r="14.344" fill="currentColor" transform="rotate(45 64 64)"/><circle cx="16" cy="64" r="12.531" fill="currentColor" transform="rotate(90 64 64)"/><circle cx="16" cy="64" r="10.75" fill="currentColor" transform="rotate(135 64 64)"/><circle cx="16" cy="64" r="10.063" fill="currentColor" transform="rotate(180 64 64)"/><circle cx="16" cy="64" r="8.063" fill="currentColor" transform="rotate(225 64 64)"/><circle cx="16" cy="64" r="6.438" fill="currentColor" transform="rotate(270 64 64)"/><circle cx="16" cy="64" r="5.375" fill="currentColor" transform="rotate(315 64 64)"/><animateTransform attributeName="transform" type="rotate" values="0 64 64;315 64 64;270 64 64;225 64 64;180 64 64;135 64 64;90 64 64;45 64 64" calcMode="discrete" dur="640ms" repeatCount="indefinite"></animateTransform></g></svg> Loading..</p>
+  <div id="js-search-results-container" class="search-results row g-4 mt-2" style="display:none"></div>
+
+  <div class="mt-4 card-meta">
+    <p class="h4 mb-3">See posts by tags</p>
+    <ul class="card-meta-tag list-inline">
+      {{ range .Site.Taxonomies.tags }}
+      <li class="list-inline-item me-1 mb-2">
+        <a class="small" href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+
+  <div class="mt-4 card-meta">
+    <p class="h4 mb-3">See posts by categories</p>
+    <ul class="card-meta-tag list-inline">
+      {{ range .Site.Taxonomies.categories }}
+      <li class="list-inline-item me-1 mb-2">
+        <a class="small" href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var searchResults=document.getElementById("js-search-results-container"),searchInput=document.getElementById("js-search-input"),loading=document.getElementById("js-search-loader"),contextDive=95,timerUserInput=!1;function search(l){for(;searchResults.firstChild;)searchResults.removeChild(searchResults.firstChild);0===l.length||l.length<1?searchResults.style.display="none":(searchResults.style.display="flex",getJSON("/index.json",function(e){var t=[],n=new RegExp(l,"i");e.forEach(function(e){(e.title.match(n)||e.content.match(n))&&t.push(e)}),0<t.length?(searchResults.appendChild(htmlToElement('<h4 class="mb-0">'.concat('<span class="font-secondary">',t.length,'</span>',1<+t.length?" results found.":" result found.</h4>"))),t.forEach(function(e,t){let n=e.content.toLowerCase().indexOf(l.toLowerCase()),s=n+l.length;var c=n-contextDive;0<c?(c=e.content.indexOf(" ",c)+1)<n?n=c:n-=contextDive/2:n=0,(c=s+contextDive)<e.content.length?-1!==(c=e.content.indexOf(" ",c))?s=c:s+=contextDive/2:s=e.content.length-1;let o=e.content.substring(n,s);0!==n&&(o="...".concat(o)),s!==e.content.length-1&&(o=o.concat("...")),e="".concat('<div class="search-result-card col-xl-2 col-lg-3 col-sm-4 col-12" id="search-id-',t,'" >').concat('<a href="',e.permalink,'"> <img class="w-100 img-fluid rounded" src="',e.image,'" alt="',e.title,'"><span class="d-inline-block mt-2 mb-1 small">',e.date,' </span> <p class="h5 mb-0"> ',e.title,"</p> </a>").concat("</div>"),searchResults.appendChild(htmlToElement(e))})):searchResults.appendChild(htmlToElement('<h3 class="mb-0">No results found</h3>'))}))}function getJSON(e,t){let n=new XMLHttpRequest;n.open("GET",e),n.onload=function(){200===n.status?t(JSON.parse(n.responseText)):console.error("Some error processing ".concat(e,": ",n.status))},n.onerror=function(){console.error("Connection error: ".concat(n.status))},n.send()}function htmlToElement(e){let t=document.createElement("template");return e=e.trim(),t.innerHTML=e,t.content.firstChild}searchInput.addEventListener("keypress",function(){loading.style.display="block"}),searchInput.addEventListener("keyup",function(){timerUserInput&&clearTimeout(timerUserInput),timerUserInput=setTimeout(function(){search(searchInput.value.trim()),loading.style.display="none"},450)});
+</script>
+{{end}}

@@ -1,0 +1,95 @@
+{{define "main"}}
+
+{{ partial "page-header.html" . }}
+
+<section>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center">
+        {{ with .Params.intro }}
+        {{ if .enable }}
+        <h2 class="text-dark mb-4">{{.title | markdownify}}</h2>
+
+        {{ if .Params.social.enable }}
+        {{ with .Params.social }}
+        <ul class="social-links list-unstyled list-inline mt-4">
+          {{ range .social_links }}
+          <li class="list-inline-item"><a href="{{.link | safeURL}}">
+            <i class="{{.icon}}"></i>
+          </a></li>
+          {{end}}
+        </ul>
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+    
+    <div class="py-5">
+      {{ with .Params.intro }}
+      {{ if .enable }}
+      <div class="row g-4 justify-content-center text-center">
+        {{ range $i, $e := .images }}
+        <div class="{{.grid_class}} image-grid-{{add $i 1}}">
+          {{$img:= resources.Get .src }}
+          {{ if eq $i 0}}
+            {{$img:= $img.Resize "620x webp"}}
+            <img loading="lazy" decoding="async" class="img-fluid rounded" src="{{$img.RelPermalink}}" alt="{{.Title}}" width="{{$img.Width}}" height="{{$img.Height}}">
+          {{ else }}
+            {{$img:= $img.Resize "460x webp"}}
+            <img loading="lazy" decoding="async" class="img-fluid rounded" src="{{$img.RelPermalink}}" alt="{{.Title}}" width="{{$img.Width}}" height="{{$img.Height}}">
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center">
+        {{ with .Params.intro }}
+        {{ if .enable }}
+        <div class="content">{{.description | markdownify}}</div>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+    
+    {{ with .Params.our_writers }}
+    {{ if .enable }}
+    <div class="section-sm pb-0">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 text-center">
+          <h2 class="section-title">
+            <span>{{ .title | markdownify }}</span>
+          </h2>
+  
+          <div class="row g-4 g-md-5 justify-content-center text-center">
+            {{ range where site.RegularPages "Section" "author" }}
+            <div class="col-lg-4 col-sm-6">
+              {{ if .Params.image }}
+              <a class="d-inline-block is-hoverable" href="{{.Permalink}}">
+                {{$img:= resources.Get (.Params.image) }}
+                {{$img:= $img.Resize "150x150 webp"}}
+                <img loading="lazy" decoding="async" class="img-fluid rounded" src="{{$img.RelPermalink}}" alt="{{.Title}}" width="{{$img.Width}}" height="{{$img.Height}}">
+                <h4 class="text-dark mt-4 mb-1">{{.Title}}</h4>
+      
+                {{ $totalPosts := where site.RegularPages ".Params.author" .Title }}
+                {{ $totalPosts := len $totalPosts }}
+                <p class="mb-0"><span class="fw-bold text-black">{{if lt $totalPosts 9}}0{{$totalPosts}}{{else}}{{$totalPosts}}{{end}}</span> Published posts</p>
+              </a>
+              {{ end }}
+            </div>
+            {{end}}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+</section>
+
+{{end}}

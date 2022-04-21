@@ -1,0 +1,42 @@
+{{define "main"}}
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="row g-5 text-center text-lg-start justify-content-center justify-content-lg-start">
+          <div class="col-lg-3 col-md-4">
+            {{if .Params.image}}
+            {{$img:= resources.Get (.Params.image) }}
+            {{$img:= $img.Resize "250x250 webp"}}
+            <img loading="lazy" decoding="async" class="img-fluid rounded" src="{{$img.RelPermalink}}" alt="{{.Title}}" width="{{$img.Width}}" height="{{$img.Height}}">
+            {{end}}
+          </div>
+          <div class="col-lg-9 col-md-12">
+            {{ $totalPosts := where site.RegularPages ".Params.author" .Title }}
+            {{ $totalPosts := len $totalPosts }}
+            <p class="mb-2"><span class="fw-bold text-black">{{if lt $totalPosts 9}}0{{$totalPosts}}{{else}}{{$totalPosts}}{{end}}</span> Published posts</p>
+            <h1 class="h3 text-dark mb-3">{{.Title}}</h1>
+            <div class="content">
+              {{ .Params.description | markdownify }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row gy-5 gx-4 g-xl-5">
+      {{ range where site.RegularPages ".Params.author" .Title }}
+      <div class="col-lg-6">
+        {{.Render "post"}}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{end}}

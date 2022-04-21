@@ -1,0 +1,50 @@
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+
+        {{ if or (eq .Section "tags") (eq .Section "categories") }}
+          {{ if or (eq .Permalink (`tags/` | absURL)) (eq .Permalink (`categories/` | absURL)) }}
+          <h1 class="section-title h2 mb-3">
+            <span>{{.Title | markdownify}}</span>
+          </h1>
+          {{else}}
+          <p class="mb-2">Showing posts from</p>
+          <h1 class="section-title h2 mb-3">
+            <span>{{.Title | markdownify}}</span>
+          </h1>
+          {{ end }}
+        {{ else }}
+          <h1 class="section-title h2 mb-3">
+            <span>{{.Title | markdownify}}</span>
+          </h1>
+        {{ end }}
+        
+        <ul class="list-inline breadcrumb-menu mb-4">
+          <li class="list-inline-item"><a href="{{site.BaseURL | relLangURL}}"><i class="ti ti-home"></i>  <span>Home</span></a></li>
+          {{ $.Scratch.Set "url" "" }}
+          {{ range (split .RelPermalink "/") }}
+            {{ if (gt (len .) 0) }}
+              {{ $.Scratch.Set "isPage" "false" }}
+              {{ $.Scratch.Add "url" (print "/" . ) }}
+              {{ if $.Site.GetPage (print . ".md") }}
+                {{ with $.Site.GetPage (print . ".md") }}
+                  {{ if .IsPage }}
+                    {{ $.Scratch.Set "isPage" "true" }}
+                  {{ end }}
+                {{ end }}
+              {{ end }}
+              {{ if eq ($.Scratch.Get "isPage") "true" }}
+                {{ with $.Site.GetPage (print . ".md") }}
+                  <li class="list-inline-item">• &nbsp; <a href="{{ $.Scratch.Get `url` }}"><span>{{ .Title }}</span></a></li>
+                {{ end }}
+              {{ else }}
+                <li class="list-inline-item">• &nbsp; <a href="{{ $.Scratch.Get `url` }}"><span>{{ humanize . }}</span></a></li>
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

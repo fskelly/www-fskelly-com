@@ -1,0 +1,16 @@
+{{ $src := $.Get "src" }}
+{{ $alt := $.Get "alt" }}
+{{ $title := $.Get "title" }}
+{{ $caption := $.Get "caption" }}
+
+{{ $img := resources.Get $src }}
+{{ $imgWebp := $img.Resize (add (add (string $img.Width) "x") " webp") }}
+
+{{ if $caption }}
+<figure>
+  <img src="{{ $imgWebp.Permalink }}" alt="{{ $alt }}" title="{{ $title }}">
+  <figcaption>{{$caption}}</figcaption>
+</figure>
+{{ else }}
+<img src="{{ $imgWebp.Permalink }}" alt="{{ $alt }}" title="{{ $title }}">
+{{ end }}

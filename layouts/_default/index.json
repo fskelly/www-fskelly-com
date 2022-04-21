@@ -1,5 +1,19 @@
 {{- $.Scratch.Add "index" slice -}}
-{{- range .Site.RegularPages -}}
-    {{- $.Scratch.Add "index" (dict "title" .Title "tags" .Params.tags "content" .Plain "href" .Permalink "date" ( .Date.Format "Jan 2, 2006" )) -}}
+{{- range where site.RegularPages "Type" "in" site.Params.mainSections -}}
+
+{{ with .Params.image }}
+{{ if (fileExists (add `assets/` .)) }}
+{{ $image:= resources.Get . }}
+{{ $imageWebp:= $image.Resize "300x webp" }}
+{{ $.Scratch.Set "image" $imageWebp.RelPermalink }}
+{{ else }}
+{{ $.Scratch.Set "image" (. | absURL) }}
+{{ end }}
+{{ end }}
+
+{{- $image:= $.Scratch.Get "image" -}}
+
+{{- $date:= .PublishDate.Format "02 Jan, 2006" -}}
+{{- $.Scratch.Add "index" (dict "title" .Title "date" $date "tags" .Params.tags "image" $image "categories" .Params.categories "content" .Plain "permalink" .RelPermalink) -}}
 {{- end -}}
-{{- $.Scratch.Get "index" | jsonify -}}
+{{- $.Scratch.Get "index" | uniq | jsonify -}}

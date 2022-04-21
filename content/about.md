@@ -1,24 +1,44 @@
-+++
-title = "About"
-description = "About Fletcher Kelly"
-date = "2021-01-05"
-aliases = ["about-me"]
-author = "Fletcher Kelly"
-+++
+---
+title: "About"
+layout: "about"
+image: "images/about.jpg"
+draft: false
 
-## Who Am I?
+#intro
+intro:
+  enable: false
+  title: "We are the Qurno, <br> Team of content writers and designers."
+  description: "If ever a place existed where you could just go crazy creatively, it is definitely your about page. It’s your chance to show your readers who you really are. Pictures, quotes, inspirational graphics, whatever it is that drives you.. Display it here in a way that only you can.
+  
+  
+  I’ve included a plugin in the setup of this theme that will make adding columns to your pages and posts a piece of cake. Let creativity take control, and forget about the technical end of things, I’ve got your six."
+  images:
+  - src: "images/about/01.jpg"
+    grid_class: "col-lg-6"
+  - src: "images/about/00.jpg"
+    grid_class: "col-lg-3 col-6"
+  - src: "images/about/02.jpg"
+    grid_class: "col-lg-3 col-6"
 
-I am a Microsoft Employee, working within Azure Engineering as a FastTrack For Azure (FTA) Engineer, focusing primarily on Infra and working with customers across the globe with their respective journeys to the cloud. I was previously a Cloud Solutions Architect (CSA) for Microsoft as well. I was in the Microsoft Partner space for many years before that.
+# social
+social:
+  enable: true
+  social_links:
+#  - link: "https://www.facebook.com/"
+#    icon: "ti ti-brand-facebook"
 
-## What is FastTrack For Azure?
+  - link: "https://www.twitter.com/fskelly"
+    icon: "ti ti-brand-twitter"
+    
+  - link: "https://www.linkedin.com/in/fletcherkelly"
+    icon: "ti ti-brand-linkedin"
+    
+  - link: "https://www.github.com/fskelly"
+    icon: "ti ti-brand-github"
 
-FastTrack for Azure is a technical enablement program for organizations with cloud projects that enables the rapid, effective design, and deployment of Azure solutions in the cloud. It includes tailored guidance from Azure engineers that leverages proven practices and architectural guides.
-
-[More information about FTA](https://www.microsoft.com/azure/partners/fasttrack-for-azure)
-
-### My Blog
-
-This is just my personal blog of Azure Code and Azure Experiences. I use mainly [PowerShell](https://docs.microsoft.com/en-us/powershell/azure/overview?view=azps-1.4.0). I have other repos focused on other scripting languages like
-[az cli](https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest), [Terrafrom](https://www.terraform.io) and [REST API](https://docs.microsoft.com/en-us/rest/api/azure/) calls. I am constatly testing, changing or adding contnet, I try to get the code/samples as accurate as possible. </br>
-
-**All round geek; Azure Cloud Advocate; PowerShell Geek; Bash Junkee; FastTrack for Azure; Microsoft South Africa Employee; Tinkerer - arduino, ESP, VSCode, RPI automatetheworld**
+# our_writers
+our_writers:
+  title: "Our writers"
+  enable: true
+ 
+---

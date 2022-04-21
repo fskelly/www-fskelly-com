@@ -1,0 +1,27 @@
+{{ define "main" }}
+
+{{ partial "page-header.html" . }}
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="archive-block">
+          {{ $prev := 3000}}
+          {{range where site.RegularPages "Type" "in" site.Params.mainSections}}
+            {{if .Date}}
+            {{if gt $prev (.Date.Format "2006")}}
+              <h2><i class="ti ti-archive"></i>{{ .Date.Format "2006" }}</h2>
+            {{end}}
+            
+            <p class="archive-post-item">{{.Date.Format "02 Jan"}}<span>•</span><a href="{{.RelPermalink}}">{{.Title}}</a></p>
+            {{ $prev = .Date.Format "2006"}}
+            {{end}}
+          {{end}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}
