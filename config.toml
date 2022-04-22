@@ -122,6 +122,3 @@ weight = 3
 name = "404 Page"
 url = "404-page/"
 weight = 4
-
-[taxonomies]
-  series = "series"
