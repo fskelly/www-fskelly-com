@@ -41,7 +41,7 @@ I noticed that there was a distinct power usage of "0.4W" when the cycle was com
 
 So, we have a way to determine when the wash cycle started and take the appropriate actions. I get the current washing state in home assistant and change it to running.
 
-{{< figure src="/images/2022/zwavewashingmachinenotifications/washing-cycle-start.jpg" alt="Node-RED washing machine start cycle" height="100" width="900" >}}
+{{< figure src="/images/2022/zwavewashingmachinenotifications/washing-cycle-start.jpg" alt="Node-RED washing machine start cycle" height="50" width="900" >}}
 
 [Node-RED Flow](/blog/home-automation/2022/zwaveplugwashingmachinenotifications/washing-cycle-start.json)
 
@@ -51,7 +51,7 @@ So, we have a way to determine when the wash cycle started and take the appropri
 
 So, we also have a way to determine when the wash cycle completes and take the appropriate actions. I get the current washing state in home assistant and change it to completed, I increment a washing counter and send notifications.
 
-{{< figure src="/images/2022/zwavewashingmachinenotifications/washing-cycle-end.jpg" alt="Node-RED washing machine start cycle" height="200" width="900" >}}
+{{< figure src="/images/2022/zwavewashingmachinenotifications/washing-cycle-end.jpg" alt="Node-RED washing machine start cycle" height="100" width="900" >}}
 
 [Node-RED Flow](/blog/home-automation/2022/zwaveplugwashingmachinenotifications/washing-cycle-end.json)
 
@@ -73,11 +73,11 @@ For the notifications, I also use [Node-RED](https://nodered.org/) and the "noti
 
 Notification Flow
 
-{{< figure src="/images/2022/zwavewashingmachinenotifications/washing-cycle-notification.jpg" alt="Node-RED washing machine notification flow" height="300" width="1200" >}}
+{{< figure src="/images/2022/zwavewashingmachinenotifications/washing-cycle-notification.jpg" alt="Node-RED washing machine notification flow" height="200" width="900" >}}
 
 Change Nodes
 
-{{< figure src="/images/2022/zwavewashingmachinenotifications/change-nodes-notify.jpg" alt="Node-RED change nodes for notifications" height="300" width="300" >}}
+{{< figure src="/images/2022/zwavewashingmachinenotifications/change-nodes-notify.jpg" alt="Node-RED change nodes for notifications" height="300" width="450" >}}
 
 [Node-RED Flow](/post/2022/zwaveplugwashingmachinenotifications/washing-cycle-notification.json)
 
