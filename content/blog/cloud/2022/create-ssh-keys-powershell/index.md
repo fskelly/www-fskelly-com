@@ -37,16 +37,10 @@ $username = ""
 $keyLocation = ''
 $keyName = $username
 $keyPath = $keyLocation + $keyName
-
 ssh-keygen -m PEM -t rsa -b 4096 -f $keyPath -C $username
 ```
 
 Now to get the content of the public key, for use with Azure VMs or any type of IaC, I use [Bicep](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview?tabs=bicep)
-
-```powershell
-$pubKeyPath = $keyPath + '.pub'
-$pubKey = get-content -Path $pubKeyPath
-```
 
 You can read the content out to something simple like NotePad (Honestly a tool I use **DAILY**).
 
@@ -55,6 +49,10 @@ $pubKeyPath = $keyPath + '.pub'
 $pubKey = get-content -Path $pubKeyPath
 $pubKey
 ```
+
+Example output from $pubkey below, this is what you need to copy and paste within the Azure Portal when creating a Linux VM.
+
+{{< figure src="/images/blogImages/2022/openssh-powershell/ssh-key-example.jpg" alt="ssh-key-example" height="300" width="900" >}}
 
 If you want to use this key with an existing, you can. :smile: . We can perform a task similar to ssh-copy-id. Update the ***$destinationIp*** as needed.
 
